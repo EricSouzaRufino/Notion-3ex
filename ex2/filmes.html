@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Filmes Avaliações</title>
+
+</head>
+
+
+
+<body>
+
+    <div class="container">
+        <nav>
+            <h1> Avaliações Filmes Cinemark</h1>
+        </nav>
+
+        <p style="text-align: center;" id="p1"> Escolha o filme<br><br>
+        <div id="lista"> <select id="filmes">
+                <option value="0">Selecione um Filme</option>
+                <option value="01">A Morte do Demônio</option>
+                <option value="02">Super Mario Bros</option>
+                <option value="03">John Wick 4</option>
+                <option value="04">O Exorcista do Papa</option>
+            </select>
+        </div>
+        </p>
+    </div>
+
+    <div class="imagens">
+        <div id="i1"><img src="amorte.jpg"> </div>
+        <div id="i2"><img src="supmario.jpg"></div>
+        <div id="i3"><img src="jw4.jpg"></div>
+        <div id="i4"><img src="exorcista.jpg"></div>
+    </div>
+
+    <div id="not">
+
+        <input id="nota" placeholder="Insira uma nota (0 a 10)" type="number" value=" " max="10" min="0" step="0.1">
+        <button type="button" onclick="darNota()"> Enviar</button>
+    </div>
+
+    <p id="p2"> Média das Notas</p>
+    <div id="lista2"> 
+        <label for="filmes-media">Escolha um filme</label>
+        <select id="filmes-media">
+            <option value="1">A Morte do Demônio</option>
+            <option value="2">Super Mario Bros</option>
+            <option value="3">John Wick 4</option>
+            <option value="4">O Exorcista do Papa</option>
+        </select>
+        <button type="button" onclick="calcularMedia()">Calcular Media</button>
+    </div>
+
+
+    <script>
+
+        let filmes = ["A Morte do Demônio", "Super Mario Bros", "John Wick 4", "O Exorcista do Papa"];
+        let notas = [[], [], [], []];
+
+
+        function darNota() {
+
+            let filme = document.getElementById("filmes").value;
+
+            if (filme >= 1 && filme <= 4) {
+                let nota = parseFloat(document.getElementById('nota').value);
+
+                if (nota >= 0 && nota <= 10) {
+                    notas[filme - 1].push(nota);
+                    alert("O filme " + filmes[filme - 1] + " recebeu a nota " + nota);
+                    document.getElementById('filmes').value = 0;
+                    document.getElementById('nota').value = '';
+                } else {
+                    alert("A nota deve estar entre 0 e 10!");
+                }
+            } else {
+                alert("Escolha um filme válido");
+            }
+        }
+
+        function calcularMedia() { 
+
+            let filme = document.getElementById("filmes-media").value;
+
+            if (filme >= 1 && filme <= 4) {
+                let notasFilme = nota[filme - 1];
+                if (notasFilme.lenght > 0) {
+                    let soma = 0;
+                    for (let i = 0; i < notasFilme.length; i++) {
+                        soma += notasFilme[i];
+                    }
+                    let media = soma / notasFilme.length;
+
+                    alert("A média das notas para o filme " + filme[filme-1] + " é " + media.toFixed(1));
+                } else {
+                    alert("Não há notas para este filme ainda!");
+                }
+            } else {
+                alert("Escolha um filme válido!");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
